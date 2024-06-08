@@ -1,0 +1,23 @@
+.header {
+  background-color: #0594a9;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+
+  display: flex;
+  justify-content: space-between;
+
+  & > div {
+    // flex: 0 1 50%;
+
+    & span:first-child {
+      text-transform: uppercase;
+    }
+
+    &:last-child {
+      flex: 0 1 10%;
+    }
+  }
+}

@@ -1,0 +1,191 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  border: 2px solid red;
+}
+.content-container {
+  float: right;
+  margin-top: 20px;
+  margin-left: 50px; /* Adjust the left margin for horizontal space */
+}
+.vertical-space {
+  height: 20px; /* Adjust the height to add vertical space */
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+.app-header {
+  background-color: #0594a9;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  margin-top: 10px;
+  width: 220%;
+  height: 80px; /* Set width to 50% */
+  display: inline-block;
+}
+.app-header-fill{
+  background-color: #0594a9;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  width: 400%;
+  height: 80px; /* Set width to 50% */
+  display: inline-block;
+}
+.app-header h2 {
+  margin: 4; /* Remove default margin */
+}
+.app-header-Fill {
+  margin: 4; /* Remove default margin */
+}
+.app-header2 {
+  background-color: #3c5660;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  margin-top: 10px;
+  margin-left: 5rem;
+  margin-right: 0rem;
+  width: 49%;
+  height: 80px; /* Set width to 50% */
+  display: inline-block;
+}
+
+.app-header-Fill{
+  background-color: #3c5660;
+  color: #fff;
+  border-radius: 0.5rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  margin-top: 10px;
+  width: 250%;
+  height: 80px; /* Set width to 50% */
+  display: inline-block;
+}
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.quill-editor-container {
+  position: absolute;
+ margin-top: 1rem;
+  right: 0;
+  width: 550px; /* Adjust the width as needed */
+  height: 50vh; 
+  margin-right: 2rem;
+  padding: 30px;
+/* Adjust padding as needed */
+}
+.app-header h1 {
+  margin: 2; /* Remove default margin */
+}
+
+.save-button,
+
+.cancel-button {
+  background-color: #282c34;
+  color: white;
+  border: none;
+  margin-top: 10px;
+  margin-left: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.back-to-si{
+  background-color: #282c34;
+  color: white;
+  border: none;
+  margin-top: 1px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.show-button{
+  background-color: #282c34;
+  color: white;
+  border: none;
+  margin-top: 1px;
+  margin-bottom: 10px;
+  margin-left: 20px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.save-button {
+  margin-right: 10px; /* Push the button to the left */
+}
+.show-button{
+  margin-right: 70px;
+}
+.cancel-button {
+  margin-left: auto; /* Push the button to the right */
+}
+select {
+  margin-bottom: 20px; /* Add margin to create space from elements below */
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #0594a9;
+  color: black; /* Text color */
+ /* Background color */
+  border: 1px solid white; /* Border color */
+  padding: 5px; 
+}
+
+.save-button:hover,
+.cancel-button:hover {
+  background-color: navy;
+}
+
+
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  position: fixed;
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
