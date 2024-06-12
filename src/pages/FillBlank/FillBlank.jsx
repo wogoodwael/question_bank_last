@@ -45,6 +45,8 @@ const FillBlankForm = (props) => {
       console.log(res.data);
       const { parameters } = res.data;
       setQuestions(parameters.questions);
+      setId(id); // Set the id state
+
      
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -65,25 +67,18 @@ const FillBlankForm = (props) => {
       return updatedQuestions;
     });
   };
-  const handleSubmitToSI = () => {
-  
-    navigate(`/edit_SI/${id}`);
-      console.log('id here ', id);
-  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const containsEmptyAnswer = questions.some(question => question._Answer_ === '');
-    console.log("qqqq", containsEmptyAnswer)
     setLoading(true);
     try {
-
-
       const data = {
         ...state,
         isAnswered: containsEmptyAnswer ? "r" : "g",
         parameters: { questions },
       };
-
+  
       if (location.pathname.includes("/edit_fill/")) {
         const { id } = params;
         await axios.patch(`/interactive-objects/${id}`, data);
@@ -91,11 +86,9 @@ const FillBlankForm = (props) => {
         setTimeout(() => {
           navigate("/");
         }, 2000);
-      }  else {
+      } else {
         const response = await axios.post("/interactive-objects", data);
-        console.log('Response data:', response.data)
         const newId = response.data;
-        console.log('idddddd', newId)
         setId(newId);
         if (props.onSubmit) {
           props.onSubmit();
@@ -103,6 +96,11 @@ const FillBlankForm = (props) => {
           toast.success("Question created successfully!");
           setTimeout(() => {
             setQuestions([generateFillBlankQuestion()]);
+            if (location.pathname.includes("/add-question-si/filltheblanks/manual")) {
+              navigate(`/edit_SI/${newId}`);
+            } else {
+              navigate(`/`);
+            }
           }, 2000);
         }
       }
@@ -112,7 +110,7 @@ const FillBlankForm = (props) => {
       setLoading(false);
     }
   };
-
+  
   const handleAddQuestion = () => {
     setQuestions((prevQuestions) => [...prevQuestions, generateFillBlankQuestion()]);
   };
@@ -205,7 +203,7 @@ const FillBlankForm = (props) => {
           <span>Submit</span>
           {loading && <CircularProgress />}
         </Button>
-        <button className="back-to-si" onClick={handleSubmitToSI}>SI</button>
+        {/* <button className="back-to-si" onClick={handleSubmitToSI}>SI</button> */}
 
       </div>
     </form>

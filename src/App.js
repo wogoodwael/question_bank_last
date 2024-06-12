@@ -52,6 +52,7 @@ function App() {
             <Route path="/show/:id" Component={Show} />
             <Route path="/bulk" Component={Bulk} />
             <Route path="/add-question" Component={AddObject} />
+            <Route path="/add-question-si" Component={AddObject} />
             <Route path="/scan-and-upload" Component={ScanAndUpload} />
             <Route path="/scan-and-upload-fill" Component={ScanAndUploadFill} />
             <Route
@@ -67,6 +68,7 @@ function App() {
               Component={TrueFalseForm}
             />
            <Route path="/add-question/filltheblanks/manual" Component={FillBlank} />
+           <Route path="/add-question-si/filltheblanks/manual" Component={FillBlank} />
            <Route path="/SI-page" Component={FillSIForm} />
            <Route path="/edit_fill/:id" Component={FillBlank} /> 
            <Route path="/edit_SI/:id" Component={FillSIForm} /> 
