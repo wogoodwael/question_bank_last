@@ -197,7 +197,7 @@ export default function DataTable(props) {
               paginationModel: { page: 0, pageSize: 5 },
             },
           }}
-          pageSizeOptions={[5, 10]}
+          pageSizeOptions={[5, 20]}
           baseCheckbox={RadioButtonCheckedRounded}
           slots={{ toolbar: GridToolbar }}
         />

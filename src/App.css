@@ -88,9 +88,10 @@
   position: absolute;
  margin-top: 1rem;
   right: 0;
-  width: 550px; /* Adjust the width as needed */
+
+  width: 600px; /* Adjust the width as needed */
   height: 50vh; 
-  margin-right: 2rem;
+  margin-right: 4rem;
   padding: 30px;
 /* Adjust padding as needed */
 }

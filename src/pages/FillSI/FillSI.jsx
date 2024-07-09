@@ -23,14 +23,15 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useStore } from "../../store/store";
 import { toast } from "react-toastify";
 import AddIcon from "@mui/icons-material/Add";
-import QuestionNameHeader from "../../components/QuestionNameHeader/QuestionNameHeader";
 import ReactQuill from "react-quill";
-import AddQuestionSi from "../../pages/AddObjectSi/AddObjectSi"; // Import the component
+import AddQuestionSi from "../../pages/AddObjectSi/AddObjectSi";
 
 const generateFillBlankQuestion = () => {
   return {
+    id: uuidv4(),
     paragraph: "",
     _Object_: "",
+    open: false,
   };
 };
 
@@ -100,18 +101,14 @@ const FillSIForm = (props) => {
       const res = await axios.get(`/interactive-objects/${id}`);
       const { parameters } = res.data;
 
+      const url = "https://scube-applications-media54cbabfc-u3d19945rbtv.s3.eu-west-1.amazonaws.com/new-interactive-objects/objects/identify%20the%20picture%20and%20Answer-6683c3442acb4a0044ed4d7e.html";
+      
       if (location.pathname.includes("/edit_SI_edit/")) {
-        const { data } = await axios.get(
-          `https://questions-api-osxg.onrender.com/api/createObject/${parameters.slides[0]._Object_}`
-        );
-        setResult(data);
+        setResult(url);
         setShowResult(true);
       } else if (location.pathname.includes("/edit_SI/")) {
-        const { id } = params;
-        const { data } = await axios.get(
-          `https://questions-api-osxg.onrender.com/api/createObject/${id}`
-        );
-        setResult(data);
+        localStorage.setItem(`data_${id}`, id);
+        setResult(url);
         setShowResult(true);
       }
     } catch (error) {
@@ -152,7 +149,7 @@ const FillSIForm = (props) => {
         const { id } = params;
         const updatedSlides = slides.map((slide) => ({
           ...slide,
-          _Object_: id,
+          _Object_: localStorage.getItem(`data_${id}`),
           paragraph: slide.paragraph,
         }));
         await axios.post("/interactive-objects", {
@@ -180,8 +177,9 @@ const FillSIForm = (props) => {
     const slideId = uuidv4();
     const initialSlide = {
       id: slideId,
-      paragraph: htmlContent,
-      _Object_: params.id,
+      paragraph: "",
+      _Object_: slideId,
+      open: false,
     };
     setSlides((prevSlides) => [...prevSlides, initialSlide]);
   };
@@ -214,6 +212,14 @@ const FillSIForm = (props) => {
     setShowForm(true);
     setLoading(false);
     navigate("/SI-page");
+  };
+
+  const handleObjectChange = (object, index) => {
+    setSlides((prevQuestions) => {
+      const updatedQuestions = [...prevQuestions];
+      updatedQuestions[index]._Object_ = object;
+      return updatedQuestions;
+    });
   };
 
   const styleSheet = {
@@ -379,8 +385,21 @@ const FillSIForm = (props) => {
           <Typography id="modal-title" variant="h6" component="h2">
             Add or Select Object
           </Typography>
-          <AddQuestionSi /> {/* Render AddObjectSi component directly */}
-          <Button onClick={handleOpenModal}>Add object</Button>
+          <AddQuestionSi
+            onSave={(newObject) => {
+              handleObjectChange(newObject, currentSlideIndex);
+              handleCloseModal();
+            }}
+          />
+          <Button
+            onClick={() => {
+              const newObject = localStorage.getItem('newObject') // get your new object here
+              handleObjectChange(newObject, currentSlideIndex);
+              handleCloseModal();
+            }}
+          >
+            Add object
+          </Button>
           <Button onClick={SelectFromLibrary}>Select From Library</Button>
           <Button onClick={handleCloseModal}>Close</Button>
         </Box>
